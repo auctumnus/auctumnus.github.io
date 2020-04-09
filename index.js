@@ -1,36 +1,34 @@
 console.log('loaded external script!')
 const g = parentElement => {
+  // get container width and height
   let width = parentElement.clientWidth
   let height = parentElement.clientHeight
 
+  // set up scene and camera
   let scene = new THREE.Scene()
   let camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000)
 
+  // set up renderer
   let renderer = new THREE.WebGLRenderer()
   renderer.setSize(width, height)
   parentElement.appendChild(renderer.domElement)
 
-  var geometry = new THREE.BoxGeometry()
-  var material = new THREE.MeshBasicMaterial({ color: 0x00ff00 })
-  var cube = new THREE.Mesh(geometry, material)
+  // make cube
+  let geometry = new THREE.BoxGeometry()
+  let material = new THREE.MeshStandardMaterial({ color: 0x90298e })
+  let cube = new THREE.Mesh(geometry, material)
+  cube.position.set(0,2,0)
   scene.add(cube)
 
-  var spotLight = new THREE.SpotLight( 0xffffff )
-  spotLight.position.set( 100, 1000, 100 )
+  // make light
+  let light = new THREE.DirectionalLight( 0xffffff, 0.5 );
+  scene.add(light);
 
-  spotLight.castShadow = true;
+  // put the camera above the cube
+  camera.position.set(0,5,0)
+  camera.lookAt(0,0,0)
 
-  spotLight.shadow.mapSize.width = 1024
-  spotLight.shadow.mapSize.height = 1024
-
-  spotLight.shadow.camera.near = 500
-  spotLight.shadow.camera.far = 4000
-  spotLight.shadow.camera.fov = 30
-
-  scene.add( spotLight );
-
-  camera.position.z = 5;
-
+  // animation function
   let animate = () => {
     requestAnimationFrame(animate)
     cube.rotation.x += 0.01
