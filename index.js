@@ -8,6 +8,8 @@ const g = parentElement => {
   let scene = new THREE.Scene()
   let camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000)
 
+  scene.background = new THREE.Color(window.getComputedStyle(parentElement).getPropertyValue('background-color'))
+
   // set up renderer
   let renderer = new THREE.WebGLRenderer()
   renderer.setSize(width, height)
