@@ -4,7 +4,6 @@ const g = parentElement => {
   let height = parentElement.clientHeight
 
   let scene = new THREE.Scene()
-  scene.background = THREE.Color('#000000')
   let camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000)
 
   let renderer = new THREE.WebGLRenderer()
