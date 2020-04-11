@@ -1,5 +1,4 @@
 console.log('loaded external script!')
-document.getElementById('notify_container').innerHTML = "this is a test"
 const g = parentElement => {
   // get container width and height
   let width = parentElement.clientWidth
